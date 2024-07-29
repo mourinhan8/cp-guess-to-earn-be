@@ -1,0 +1,38 @@
+{
+  "name": "guess-to-earn-cp",
+  "version": "1.0.0",
+  "description": "backend for CP guest to earn",
+  "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "test-user": "NODE_ENV=test mocha --timeout 10000 test/user/user.test.js",
+    "test-others": "NODE_ENV=test mocha --timeout 10000 test/others/*.test.js",
+    "start": "node server.js",
+    "dev": "NODE_ENV=dev nodemon server.js",
+    "dev_queue": "NODE_ENV=dev nodemon queue.js"
+  },
+  "author": "Nhan",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bull": "^4.15.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.11",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.7.5",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.4"
+  }
+}
