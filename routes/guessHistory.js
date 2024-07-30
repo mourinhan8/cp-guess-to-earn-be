@@ -32,7 +32,7 @@ router.get('/', auth, async (req, res) => {
       .limit(pageSize)
       .sort({ createdAt: -1 })
       .exec();
-    const [guessHistory, total] = await Promise.all([QueryGuessHistory, GuessHistory.countDocuments({ guessByWallet: verifiedAddress })]);
+    const [guessHistory, total] = await Promise.all([QueryGuessHistory, GuessHistory.countDocuments({ guessBy: user._id })]);
     return res.json({
       message: "OK",
       data: guessHistory,
