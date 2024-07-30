@@ -27,7 +27,7 @@ router.get('/', auth, async (req, res) => {
 
     const skip = (currentPage - 1) * pageSize;
 
-    const QueryGuessHistory = GuessHistory.find({ guessByWallet: verifiedAddress })
+    const QueryGuessHistory = GuessHistory.find({ guessBy: user._id })
       .skip(skip)
       .limit(pageSize)
       .sort({ createdAt: -1 })
