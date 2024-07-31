@@ -28,7 +28,7 @@ const guessHistorySchema = new mongoose.Schema({
   },
   guessResult: {
     type: String,
-    enum: ['win', 'lose']
+    enum: ['win', 'lose', 'draw']
   },
 }, {
   timestamps: true,
