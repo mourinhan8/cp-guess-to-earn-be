@@ -23,7 +23,7 @@ app.use(express.json({ extended: false }));
 app.use(logger('dev'));
 
 app.get("/", (req, res) => res.send("API running"));
-const BASE_URL = "/api/v1";
+const BASE_URL = "/v1";
 // Define Routes
 app.use(`${BASE_URL}/auth`, require("../routes/auth"));
 app.use(`${BASE_URL}/user`, require("../routes/user"));
