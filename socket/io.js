@@ -5,6 +5,7 @@ let io;
 
 const initSocket = (server, handler) => {
   io = new Server(server, {
+    path: "/queue/socket.io",
     cors: {
       origin: '*',
     },
