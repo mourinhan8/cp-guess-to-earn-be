@@ -11,7 +11,15 @@ const { socketHandler } = require("./socket/socketHandler");
 const PORT = process.env.QUEUE_PORT || 4041;
 global.onlineUsers = new Map();
 
-const server = createServer();
+const server = createServer((req, res) => {
+  if (req.url === '/ping' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('pong');
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  }
+});
 
 initSocket(server, socketHandler);
 
