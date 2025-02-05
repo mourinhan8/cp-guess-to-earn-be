@@ -10,10 +10,8 @@
     "test-user": "NODE_ENV=test mocha --timeout 10000 test/user/user.test.js",
     "test-others": "NODE_ENV=test mocha --timeout 10000 test/others/*.test.js",
     "start": "node server.js",
-    "dev": "NODE_ENV=dev nodemon server.js",
-    "dev_win": "SET NODE_ENV=dev & nodemon server.js",
-    "dev_queue": "NODE_ENV=dev nodemon queue.js",
-    "dev_queue_win": "SET NODE_ENV=dev & nodemon queue.js"
+    "dev": "nodemon server.js",
+    "dev_queue": "nodemon queue.js"
   },
   "author": "Nhan",
   "license": "ISC",
