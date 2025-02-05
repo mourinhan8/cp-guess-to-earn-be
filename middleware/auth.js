@@ -11,8 +11,8 @@ const auth = async (req, res, next) => {
 
   try {
     const decoded = await jwt.verify(token, process.env.PRIVATE_KEY);
-    const { verifiedAddress } = decoded;
-    if (!verifiedAddress) {
+    const { userId } = decoded;
+    if (!userId) {
       throw new Error('Token is not valid');
     }
     req.authData = decoded;

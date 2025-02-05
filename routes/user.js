@@ -2,13 +2,13 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth")
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
 router.post('/create', auth, async (req, res) => {
   const { verifiedAddress } = req.authData;
-  
+
   try {
     if (!verifiedAddress) {
       throw new Error('Invalid address');
@@ -35,6 +35,13 @@ router.get('/list-users', async (req, res) => {
     console.log(error);
     return res.status(400).json({ message: "NOK", error: error.message });
   }
+});
+
+router.get('/me', auth, async (req, res) => {
+  try {
+    const userInfo = await User.findById(req.authData.userId);
+    return res.json({ message: "OK", userInfo: userInfo.toJSON() });
+  } catch (error) { }
 });
 
 module.exports = router;
