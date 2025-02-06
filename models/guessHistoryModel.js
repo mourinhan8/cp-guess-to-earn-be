@@ -6,29 +6,21 @@ const guessHistorySchema = new mongoose.Schema({
     ref: 'User',
     require: true
   },
-  type: {
+  guess: {
     type: String,
-    enum: ['min', 'day'],
-    require: true
-  },
-  prizeScore: {
-    type: Number,
+    enum: ['up', 'down'],
     require: true
   },
   priceAtGuess: {
     type: Number,
     require: true
   },
-  claimed: {
-    type: Boolean,
-    default: false
-  },
-  resultPrice: {
+  priceAtEnd: {
     type: Number,
   },
   guessResult: {
     type: String,
-    enum: ['win', 'lose', 'draw']
+    enum: ['win', 'lose']
   },
 }, {
   timestamps: true,

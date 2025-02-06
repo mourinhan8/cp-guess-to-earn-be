@@ -1,32 +1,25 @@
 const User = require('../models/userModel');
 const GuessHistory = require('../models/guessHistoryModel');
-const {
-  SCORE_FOR_1_MIN,
-  SCORE_FOR_1_DAY,
-  ONE_DAY,
-  ONE_MINUTE
-} = require('../utils/constants');
+const { ONE_SECOND } = require('../utils/constants');
 const guessQueue = require('../queue/guess/guess.queue');
 
 const socketHandler = (socket, io) => {
-  socket.on('guess', async ({ type, priceAtGuess }) => {
-    const { verifiedAddress } = socket.authData;
+  socket.on('guess', async ({ guess, priceAtGuess }) => {
+    const { userId } = socket.authData;
     try {
-      const user = await User.findOne({ walletAddress: verifiedAddress });
+      const user = await User.findById(userId);
       if (!user) {
         throw new Error('Account has not been created');
       }
       const guessHistory = new GuessHistory({
         guessBy: user._id,
-        type,
-        prizeScore: type === 'min' ? SCORE_FOR_1_MIN : SCORE_FOR_1_DAY,
+        guess,
         priceAtGuess
       });
       const newGuessHistory = await guessHistory.save();
-      const { _id: guessId, guessBy: userId } = newGuessHistory;
-      await guessQueue.add({ guessId, userId, priceAtGuess, type, socketId: socket.id }, {
-        delay: type === 'min' ? ONE_MINUTE : ONE_DAY,
-        // delay: 2000,
+      const { _id: guessId, guessBy } = newGuessHistory;
+      await guessQueue.add({ guessId, userId: guessBy, priceAtGuess, guess, socketId: socket.id }, {
+        delay: 5 * ONE_SECOND,
         removeOnComplete: true,
         attempts: 3,
       });

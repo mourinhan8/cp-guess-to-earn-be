@@ -1,12 +1,16 @@
 const SCORE_FOR_1_MIN = 10;
 const SCORE_FOR_DRAW_MIN = 1;
 const SCORE_FOR_1_DAY = 100;
+const ONE_SECOND = 1000;
 const ONE_MINUTE = 60000;
 const ONE_DAY = 86400000;
+const SCORE_FOR_A_WIN = 10;
 module.exports = {
   SCORE_FOR_1_MIN,
   SCORE_FOR_1_DAY,
   ONE_MINUTE,
   ONE_DAY,
+  ONE_SECOND,
+  SCORE_FOR_A_WIN,
   SCORE_FOR_DRAW_MIN
-}
+};

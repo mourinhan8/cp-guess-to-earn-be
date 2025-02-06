@@ -10,8 +10,8 @@ const authSocket = async (socket, next) => {
   // Verify token
   try {
     const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
-    const { verifiedAddress } = decoded;
-    if (!verifiedAddress) {
+    const { userId } = decoded;
+    if (!userId) {
       throw next(new Error('Token is not valid'));
     }
     socket.authData = decoded;
